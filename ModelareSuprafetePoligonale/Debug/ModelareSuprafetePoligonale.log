@@ -1,0 +1,61 @@
+﻿Build started 5/11/2015 12:18:17 PM.
+     1>Project "D:\Faculta\An 2\Sem 2\Grafica\ProiectGrafica\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ModelareSuprafetePoligonale.cpp
+         ModelareSuprafetePoligonale.cpp
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(205): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(796): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(810): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(811): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(852): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(894): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(955): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(999): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1286): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1386): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1481): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1531): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1646): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(536): error C2373: 'display' : redefinition; different type modifiers
+                 d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(22) : see declaration of 'display'
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(537): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(538): error C2065: 'quad1' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(539): error C2065: 'quad2' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(544): error C2065: 'Q1' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(547): error C2065: 'Q1' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(550): error C2065: 'Q2' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(554): error C2065: 'Q2' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(560): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(566): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(572): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(578): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(584): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(590): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(596): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(604): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(610): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(615): error C2065: 'Q3' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(619): error C2065: 'Q3' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(625): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(631): error C2065: 'quad' : undeclared identifier
+     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(637): error C2065: 'quad' : undeclared identifier
+     1>Done Building Project "D:\Faculta\An 2\Sem 2\Grafica\ProiectGrafica\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.48

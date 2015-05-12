@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelareSuprafetePoligonale", "ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj", "{93506C78-5896-47F3-B8D9-3FCBD327BE6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93506C78-5896-47F3-B8D9-3FCBD327BE6F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{93506C78-5896-47F3-B8D9-3FCBD327BE6F}.Debug|Win32.Build.0 = Debug|Win32
+		{93506C78-5896-47F3-B8D9-3FCBD327BE6F}.Release|Win32.ActiveCfg = Release|Win32
+		{93506C78-5896-47F3-B8D9-3FCBD327BE6F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
