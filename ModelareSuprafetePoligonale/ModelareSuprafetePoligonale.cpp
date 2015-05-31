@@ -14,10 +14,7 @@
 //  Initialization
 void init ();
 bool checkIfCommonLine();
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 //  Callback functions
 void display (void);
 void reshape (int w, int h);
@@ -93,6 +90,7 @@ void idle ();
 void resetCoordinates ();
 //  Declare callbacks related to GLUI
 void glui_callback (int arg);
+void turnOnTheLight(void);
 
 //  Declare the IDs of controls generating callbacks
 enum
@@ -117,10 +115,109 @@ enum
 void centerOnScreen ();
 void drawObject ();
 void printMatrixf (float *matrix);
+void turnOnTheLight2(void);
 
 //*************************************************************************
 //  GLUT Functions.
 //*************************************************************************
+
+GLfloat diffuseMaterial[4] = { 0.5, 0.5, 0.5, 1.0 };
+
+void turnOnTheLight(void)
+{
+
+    GLfloat mat_ambient[] = { 0.2, 0.2, 0.2, 1.0 };
+    GLfloat mat_diffuse[] = { 0.0, 0.0, 1.0, 1.0 };
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+    GLfloat mat_shininess[] = { 50.0 };
+    GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+    GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+    GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+
+    GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+
+    GLfloat lmodel_ambient[] = { 0.2, 0.2, 0.2, 1.0 };
+
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
+
+    glEnable(GL_LIGHTING); // activare iluminare
+    glEnable(GL_LIGHT0);	// activare sursa 0
+
+    glDepthFunc(GL_LESS);
+    glEnable(GL_DEPTH_TEST);
+
+
+}
+
+void turnOnTheLight2(void){
+
+    GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };//intensitatea
+	//componentei ambientale din sursa 0 este nula
+    GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };//intensitatea
+	//componentei difuze din sursa 0 este maxima pentru fiecrae compopnenta de
+	//culoare
+    GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };//intensitatea
+	//componentei speculare din sursa 0 este maxima pentru fiecrae compopnenta de
+	//culoare
+/*  pozitia sursei de luminã nu este cea implicitã */
+	
+    GLfloat light_position[] = { 1.0, 0.0, 0.0, 0.0 };
+	//sursa de lumina pe axa x la infinit
+    GLfloat global_ambient[] = { 0.75, 0.75, 0.75, 1.0 };
+
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);
+	//lumina ambientala in scena
+    
+    glFrontFace (GL_CW);//orientarea implicit[ a vârfurilor în sensul rotirii acelor
+    glEnable(GL_LIGHTING); //activare iluminare
+    glEnable(GL_LIGHT0); //activare sursa 0
+    glEnable(GL_AUTO_NORMAL); //activare calculare normale daca vârfurile 
+	//s-au determinat cu GL_MAP2_VERTEX_3 sau GL_MAP2_VERTEX_4
+    glEnable(GL_NORMALIZE); //activare normalizare (vectori unitari) vectori
+    glDepthFunc(GL_LESS); //comparaþia la ascunderea suprafeþelor
+    glEnable(GL_DEPTH_TEST); //activare test adâncime
+
+}
+
+
+void changeRedDiffuse (void)
+{	// modifica componenta rosie a coeficientului de reflexie al materialului
+    diffuseMaterial[0] += 0.1;
+    if (diffuseMaterial[0] > 1.0)
+    diffuseMaterial[0] = 0.0;
+    glColor4fv(diffuseMaterial);
+}
+
+void changeGreenDiffuse (void)
+{	// modifica componenta verde a coeficientului de reflexie al materialului
+    diffuseMaterial[1] += 0.1;
+    if (diffuseMaterial[1] > 1.0)
+    diffuseMaterial[1] = 0.0;
+    glColor4fv(diffuseMaterial);
+}
+
+void changeBlueDiffuse (void)
+{	// modifica componenta albastra a coeficientului de reflexie al materialului
+    diffuseMaterial[2] += 0.1;
+    if (diffuseMaterial[2] > 1.0)
+    diffuseMaterial[2] = 0.0;
+    glColor4fv(diffuseMaterial);
+}
 
 //-------------------------------------------------------------------------
 //  Set OpenGL program initial state.
@@ -129,6 +226,7 @@ void init ()
 {	
 	//  Set the frame buffer clear color to black. 
 	glClearColor (0.0, 0.0, 0.0, 0.0);
+	turnOnTheLight2();
 }
 
 //-------------------------------------------------------------------------
@@ -170,6 +268,22 @@ void reshape (int w, int h)
 
 	//  Reset viewport
 	glViewport(0, 0, window_width, window_height);
+
+	/*
+	 glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+	    if (w <= h) 
+        glOrtho (-1.5, 1.5, -1.5*(GLfloat)h/(GLfloat)w,
+                1.5*(GLfloat)h/(GLfloat)w, -10.0, 10.0);
+    else 
+        glOrtho (-1.5*(GLfloat)w/(GLfloat)h,
+                1.5*(GLfloat)w/(GLfloat)h, -1.5, 1.5, -10.0, 10.0);
+
+	glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+	*/
 }
 
 void resetCoordinates() {
@@ -186,10 +300,33 @@ void resetCoordinates() {
 //  whenever the user hits a key.
 //-------------------------------------------------------------------------
 void keyboard (unsigned char key, int x, int y)
-{		
+{	
+	switch(key) {
+
+	case 27: exit(1);
+	case 82: changeRedDiffuse(); break;
+	case 71: changeRedDiffuse(); break;
+	case 66: changeRedDiffuse(); break;
+	}
+
 	if(key == 27) 
 	{
 		exit(1);
+	}
+
+	if(key == 82) 
+	{
+		changeRedDiffuse();
+	}
+	
+	if(key == 71) 
+	{
+		changeGreenDiffuse();
+	}
+				
+	if(key == 98) 
+	{
+		changeBlueDiffuse(); 
 	}
 
 	glutPostRedisplay ();
@@ -436,7 +573,6 @@ void glui_callback (int control_id)
 		break;
 
 		case NO_POLYGONS:
-
 			printf ("Number of polygons: %d\n", no_polygons);
 			chosen = true;
 		break;
@@ -516,22 +652,31 @@ void glui_callback (int control_id)
 //	OpenGL contents on the window.
 //-------------------------------------------------------------------------
 void display (void)
-{
-
+{	
+    GLfloat low_ambient[] = { 0.1, 0.1, 0.1, 1.0 };
+    GLfloat more_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
+    GLfloat most_ambient[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat mat_diffuse2[] = { 0, 1, 0, 1.0 };
 	//  Clear the window 
-	glClear (GL_COLOR_BUFFER_BIT);
+	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	 glLoadIdentity ();
 	//  Set the color
-	glColor3fv (color);
-	
-	//  Draw object
+	//glColor3fv (color);
+
+
+
+    /*  material has small ambient reflection   */
+	//coeficient de reflexie pentru lumina ambientala mic
+    glMaterialfv(GL_FRONT, GL_AMBIENT, more_ambient);
+    glMaterialf(GL_FRONT, GL_SHININESS, 40.0);
 	drawObject ();
 
 	//  Swap contents of backward and forward frame buffers
 	glutSwapBuffers (); 
 
 }
+
 
 //-------------------------------------------------------------------------
 //  Draws our object.
@@ -567,20 +712,21 @@ void drawObject ()
 
 		if(wireframe) {
 			int i, j, k = 0;
-			for(j = 0; j < no_polygons; j++){
 
+				for(j = 0; j < no_polygons; j++){
 
-				glBegin(GL_POLYGON);  
-			
+				glBegin(GL_POLYGON);  			
+				
 				for(i = 0; i < verteces; i++){
-
-				 glVertex3f(points[k].x, points[k].y, points[k].z);
-				 k++;
+					 glVertex3f(points[k].x, points[k].y, points[k].z);
+					 k++;
 			}
-			glEnd();
+				
+				glEnd();
 		}
 		}
 		else {
+
 			auxSolidTeapot(0.5);
 		}
 
@@ -605,9 +751,6 @@ void mouse (int button, int state, int x, int y)
 				case GLUT_UP:					
 					break;
 			}
-
-
-
 	}
 }
 //-------------------------------------------------------------------------
@@ -641,16 +784,17 @@ void main (int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitWindowSize (window_width, window_height);
 	glutInitWindowPosition (window_x, window_y);
-	glutInitDisplayMode (GLUT_RGBA | GLUT_DOUBLE);
+	glutInitDisplayMode (GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	main_window = glutCreateWindow (window_title);
 
 	//  View in full screen if the full_screen flag is on
 	if (full_screen)
 		glutFullScreen ();
 
+
 	//  Set OpenGL context initial state.
 	init();
-	
+
 	// Set the GLUT callback functions
 	glutDisplayFunc (display);
 	glutReshapeFunc  (reshape);
@@ -662,5 +806,6 @@ void main (int argc, char **argv)
 
 	//  Start GLUT event processing loop
 	glutMainLoop();
+	
 }
 

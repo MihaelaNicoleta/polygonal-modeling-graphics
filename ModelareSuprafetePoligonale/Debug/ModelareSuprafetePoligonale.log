@@ -1,5 +1,5 @@
-﻿Build started 5/11/2015 12:18:17 PM.
-     1>Project "D:\Faculta\An 2\Sem 2\Grafica\ProiectGrafica\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" on node 2 (build target(s)).
+﻿Build started 6/1/2015 2:00:33 AM.
+     1>Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -31,31 +31,17 @@
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
      1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1646): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(536): error C2373: 'display' : redefinition; different type modifiers
-                 d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(22) : see declaration of 'display'
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(537): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(538): error C2065: 'quad1' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(539): error C2065: 'quad2' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(544): error C2065: 'Q1' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(547): error C2065: 'Q1' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(550): error C2065: 'Q2' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(554): error C2065: 'Q2' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(560): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(566): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(572): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(578): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(584): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(590): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(596): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(604): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(610): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(615): error C2065: 'Q3' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(619): error C2065: 'Q3' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(625): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(631): error C2065: 'quad' : undeclared identifier
-     1>d:\faculta\an 2\sem 2\grafica\proiectgrafica\modelaresuprafetepoligonale\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp(637): error C2065: 'quad' : undeclared identifier
-     1>Done Building Project "D:\Faculta\An 2\Sem 2\Grafica\ProiectGrafica\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" (build target(s)) -- FAILED.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe" /INCREMENTAL:NO /NOLOGO glu32.lib glut32.lib opengl32.lib glaux.lib glui32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBCD.lib /MANIFEST /ManifestFile:"Debug\ModelareSuprafetePoligonale.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.lib" /MACHINE:X86 Debug\ModelareSuprafetePoligonale.obj
+     1>ModelareSuprafetePoligonale.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+         ModelareSuprafetePoligonale.vcxproj -> D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe;#1" /manifest Debug\ModelareSuprafetePoligonale.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild".
+         Touching "Debug\ModelareSuprafetePoligonale.lastbuildstate".
+     1>Done Building Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.48
+Time Elapsed 00:00:02.63
