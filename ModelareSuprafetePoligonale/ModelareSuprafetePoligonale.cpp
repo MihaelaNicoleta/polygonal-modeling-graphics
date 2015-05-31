@@ -656,7 +656,7 @@ void display (void)
     GLfloat low_ambient[] = { 0.1, 0.1, 0.1, 1.0 };
     GLfloat more_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat most_ambient[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat mat_diffuse2[] = { 0, 1, 0, 1.0 };
+
 	//  Clear the window 
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -664,19 +664,17 @@ void display (void)
 	//  Set the color
 	//glColor3fv (color);
 
-
-
     /*  material has small ambient reflection   */
 	//coeficient de reflexie pentru lumina ambientala mic
-    glMaterialfv(GL_FRONT, GL_AMBIENT, more_ambient);
-    glMaterialf(GL_FRONT, GL_SHININESS, 40.0);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, most_ambient);
+    glMaterialf(GL_FRONT, GL_SHININESS, 20.0);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
 	drawObject ();
 
 	//  Swap contents of backward and forward frame buffers
 	glutSwapBuffers (); 
 
 }
-
 
 //-------------------------------------------------------------------------
 //  Draws our object.
@@ -695,7 +693,7 @@ void drawObject ()
 			//chosenV = false;
 		}
 
-		glColor3fv (color);
+	//	glColor3fv (color);
 		//  Push the current matrix into the model view stack
 		glPushMatrix ();
 
