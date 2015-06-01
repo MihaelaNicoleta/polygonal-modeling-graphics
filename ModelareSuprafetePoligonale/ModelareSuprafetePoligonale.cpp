@@ -542,6 +542,8 @@ void glui_callback (int control_id)
 			chosen = false;
 			edittext_polygons->enable();
 			resetCoordinates();
+			glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		break;
 
 		case TRANSLATION_X:
@@ -611,7 +613,7 @@ void drawObject ()
 		if(wireframe) {
 				for(j = 0; j < no_polygons; j++) {
 					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-					glBegin(GL_TRIANGLE_STRIP);  				
+					glBegin(GL_TRIANGLES);  				
 					for(i = 0; i < verteces; i++){
 						glVertex3f(polygons[j].vertex[i].x, polygons[j].vertex[i].y, polygons[j].vertex[i].z);
 					}				
@@ -620,7 +622,8 @@ void drawObject ()
 		}
 		else {
 				for(j = 0; j < no_polygons; j++){
-					glBegin(GL_TRIANGLE_STRIP);  				
+					glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+					glBegin(GL_TRIANGLES);  				
 					for(i = 0; i < verteces; i++) {
 						glVertex3f(polygons[j].vertex[i].x, polygons[j].vertex[i].y, polygons[j].vertex[i].z);
 					}				

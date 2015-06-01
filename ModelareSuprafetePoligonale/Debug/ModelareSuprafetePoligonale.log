@@ -1,4 +1,4 @@
-﻿Build started 6/1/2015 10:42:12 PM.
+﻿Build started 6/2/2015 12:03:43 AM.
      1>Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -31,7 +31,6 @@
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
      1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1646): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
-     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe" /INCREMENTAL:NO /NOLOGO glu32.lib glut32.lib opengl32.lib glaux.lib glui32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBCD.lib /MANIFEST /ManifestFile:"Debug\ModelareSuprafetePoligonale.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.lib" /MACHINE:X86 Debug\ModelareSuprafetePoligonale.obj
      1>ModelareSuprafetePoligonale.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
@@ -45,4 +44,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.74
+Time Elapsed 00:00:02.52
