@@ -1,17 +1,10 @@
-//  Include windows library in order to use the Sleep function
 #include <windows.h>
 
-//  Include GLUI, GLUT, OpenGL, and GLU libraries
 #include <gl/glui.h>
 #include <GL/glaux.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-//*************************************************************************
-//  GLUT Declarations
-//*************************************************************************
-
-//  Initialization
 void init ();
 //  Callback functions
 void display (void);
@@ -34,21 +27,7 @@ char *window_title = "Suprafete Poligonale";
 GLuint main_window;
 
 //  Tells whether to display the window full screen or not
-//  Press Alt + Esc to exit a full screen.
 int full_screen = 0;
-
-bool chosen = false;
-bool chosenV = false;
-
-//coordinates index
-int index = 0;  //replaced with polygon index
-
-int polygonIndex = 0;
-int vertecesIndex = 0;
-
-//*************************************************************************
-//  GLUI Declarations
-//*************************************************************************
 
 //  pointer to the GLUI window
 GLUI * glui_window;
@@ -58,29 +37,30 @@ int wireframe = 1;			//  Related to Wireframe Check Box
 int draw = 1;				//  Related to Draw Check Box
 int listbox_item_id = 12;	//  Id of the selected item in the list box
 int radiogroup_item_id = 0; //  Id of the selcted radio button
-float rotation_matrix[16]	//  Rotation Matrix Live Variable Array
-							= { 1.0, 0.0, 0.0, 0.0, 
+float rotation_matrix[16] = { 1.0, 0.0, 0.0, 0.0, 
 								0.0, 1.0, 0.0, 0.0,
 								0.0, 0.0, 1.0, 0.0, 
 								0.0, 0.0, 0.0, 1.0 };	
-float translate_x = 0;		//  Translation XY Live Variable
+float translate_x = 0;		
 float translate_y = 0;										
-float translate_z = 0;		//  Translation Z Live Variable
+float translate_z = 0;		
 float scale = 0.2;			//  Spinner Scale Live Variable
 
 int no_polygons = 0;
 int verteces = 3;
 int point_x = 0;
 int point_y = 0;
-int point_z = 1;
-/*
-struct coordinates {
-	int x;
-	int y;
-	int z;
-}points[10];
+int point_z = 0;
 
-*/
+// an array of RGB components
+float color[] = { 1.0, 1.0, 1.0 };
+
+bool chosen = false;
+int polygonIndex = 0;
+int vertecesIndex = 0;
+int e = 0;
+
+//coordinate x, y, z of every point
 struct coordinates {
 	int x;
 	int y;
@@ -90,14 +70,10 @@ struct coordinates {
 //every polygon has 3 points with 3 coordinates x, y, z
 struct polig {
 	coordinates vertex[3];
-}polygons[50];
+}polygons[300];
 
-coordinates edges[150][2];
-//keeps every polygons' vertex
-int vertecesMatrix[50][3];
-
-// an array of RGB components
-float color[] = { 1.0, 1.0, 1.0 };
+//for every edge
+coordinates edges[300][2];
 
 //  Set up the GLUI window and its components
 void setupGLUI ();
@@ -107,10 +83,6 @@ void idle ();
 void resetCoordinates ();
 //  Declare callbacks related to GLUI
 void glui_callback (int arg);
-void turnOnTheLight(void);
-bool checkIfCollinearPoints(polig polygon);
-bool checkIfSameCoordinatesForAllVerteces(polig polygon);
-bool checkIfCommonEdge (polig polygon);
 
 //  Declare the IDs of controls generating callbacks
 enum
@@ -135,32 +107,10 @@ enum
 void centerOnScreen ();
 void drawObject ();
 void printMatrixf (float *matrix);
-
-//*************************************************************************
-//  GLUT Functions.
-//*************************************************************************
-
-//determinantul este 0
-bool checkIfCollinearPoints(polig polygon) {
-
-	int expression;
-	expression = (polygon.vertex[0].x * polygon.vertex[1].y * polygon.vertex[2].z) + (polygon.vertex[2].x * polygon.vertex[0].y * polygon.vertex[1].z);
-	expression = expression + (polygon.vertex[1].x * polygon.vertex[2].y * polygon.vertex[0].z) - (polygon.vertex[2].x * polygon.vertex[1].y * polygon.vertex[0].z);
-	expression = expression - (polygon.vertex[0].x * polygon.vertex[2].y * polygon.vertex[1].z) - (polygon.vertex[1].x * polygon.vertex[0].y * polygon.vertex[2].z);
-
-	return expression == 0;
-
-}
-
-bool checkIfSameCoordinatesForAllVerteces(polig polygon) {
-	
-	bool x_coord = (polygon.vertex[0].x == polygon.vertex[1].x) && (polygon.vertex[0].x == polygon.vertex[2].x) && (polygon.vertex[1].x == polygon.vertex[2].x);
-	bool y_coord = (polygon.vertex[0].y == polygon.vertex[1].y) && (polygon.vertex[0].y == polygon.vertex[2].y) && (polygon.vertex[1].y == polygon.vertex[2].y);
-	bool z_coord = (polygon.vertex[0].z == polygon.vertex[1].z) && (polygon.vertex[0].z == polygon.vertex[2].z) && (polygon.vertex[1].z == polygon.vertex[2].z);
-
-	return x_coord && y_coord && z_coord;
-
-}
+void turnOnTheLight(void);
+bool checkIfCollinearPoints(polig polygon);
+bool checkIfSameCoordinatesForAllVerteces(polig polygon);
+bool checkIfCommonEdge (polig polygon);
 
 void turnOnTheLight(void){
 
@@ -194,12 +144,8 @@ void turnOnTheLight(void){
     glEnable(GL_NORMALIZE); //activare normalizare (vectori unitari) vectori
     glDepthFunc(GL_LESS); //comparaþia la ascunderea suprafeþelor
     glEnable(GL_DEPTH_TEST); //activare test adâncime
-
 }
 
-//-------------------------------------------------------------------------
-//  Set OpenGL program initial state.
-//-------------------------------------------------------------------------
 void init ()
 {	
 	//  Set the frame buffer clear color to black. 
@@ -207,10 +153,6 @@ void init ()
 	turnOnTheLight();
 }
 
-//-------------------------------------------------------------------------
-//  This function sets the window x and y coordinates
-//  such that the window becomes centered
-//-------------------------------------------------------------------------
 void centerOnScreen ()
 {
 	window_x = (glutGet (GLUT_SCREEN_WIDTH) - window_width)/2;
@@ -233,10 +175,6 @@ void printMatrixf (float *matrix)
 	}
 }
 
-//-------------------------------------------------------------------------
-//  This function is passed to the glutReshapeFunc and is called 
-//  whenever the window is resized.
-//-------------------------------------------------------------------------
 void reshape (int w, int h)
 {
 	//  Stay updated with the window width and height
@@ -245,21 +183,6 @@ void reshape (int w, int h)
 
 	//  Reset viewport
 	glViewport(0, 0, window_width, window_height);
-}
-
-void resetCoordinates() {
-
-}
-//-------------------------------------------------------------------------
-//  This function is passed to the glutKeyboardFunc and is called 
-//  whenever the user hits a key.
-//-------------------------------------------------------------------------
-void keyboard (unsigned char key, int x, int y)
-{	
-	if(key == 27) 
-	{
-		exit(1);
-	}
 }
 
 GLUI_EditText *edittext_polygons;
@@ -273,54 +196,36 @@ void setupGLUI ()
 	//  Create GLUI window //apar ferestrele unde apare desenul si options mai apropiate
 	glui_window = GLUI_Master.create_glui ("Modelare Suprafete Poligonale", 0, window_x - 235, window_y);
 
-	//---------------------------------------------------------------------
 	// 'Polygon' Panel
-	//---------------------------------------------------------------------
 	GLUI_Panel *polygon_panel = glui_window->add_panel ("Polygon");
 	edittext_polygons = glui_window->add_edittext_to_panel(polygon_panel, "Number of polygons: ", GLUI_EDITTEXT_INT, &no_polygons, NO_POLYGONS, glui_callback);
 	edittext_polygons->set_int_limits(1, 100);
-		//  Add separator
+	//  Add separator
 	glui_window->add_separator_to_panel (polygon_panel);
 	GLUI_Panel *vertex_panel = glui_window->add_panel_to_panel (polygon_panel, "Verteces");
 	edittext_verteces = glui_window->add_edittext_to_panel(vertex_panel, "Number of verteces per polygon: ", GLUI_EDITTEXT_INT, &verteces, VERTECES, glui_callback);
 	edittext_verteces->disable();
 
 	GLUI_Panel *points_panel = glui_window->add_panel_to_panel (vertex_panel, "Coordinates");
-
 	GLUI_EditText *edittext_x = glui_window->add_edittext_to_panel(points_panel, "x", GLUI_EDITTEXT_INT, &point_x, POINT_X, glui_callback);
-	//point_x = edittext_x->get_int_val();
-
 	GLUI_EditText *edittext_y = glui_window->add_edittext_to_panel(points_panel, "y", GLUI_EDITTEXT_INT, &point_y, POINT_Y, glui_callback);
-	//point_y = edittext_y->get_int_val();
-
 	GLUI_EditText *edittext_z = glui_window->add_edittext_to_panel(points_panel, "z", GLUI_EDITTEXT_INT, &point_z, POINT_Z, glui_callback);
-	//point_z = edittext_z->get_int_val();
-
 	GLUI_Button *ok_button = glui_window->add_button_to_panel (points_panel, "Ok", OK_BUTTON, glui_callback);	
-
 	GLUI_Button *reset_button = glui_window->add_button_to_panel (polygon_panel, "Reset", RESET_BUTTON, glui_callback);	
-
-
-	//---------------------------------------------------------------------
+	
 	// 'Drawing Properties' Panel
-	//---------------------------------------------------------------------
-
 	//  Add the 'Object Properties' Panel to the GLUI window
 	GLUI_Panel *op_panel = glui_window->add_panel ("Drawing Properties");
-
 	//  Add the Draw Check box to the 'Object Properties' Panel
 	glui_window->add_checkbox_to_panel (op_panel, "Draw", &draw );
-
 	//  Add the Wireframe Check box to the 'Object Properties' Panel
 	glui_window->add_checkbox_to_panel (op_panel, "Wireframe", &wireframe );
-
 	//  Add a separator
 	glui_window->add_separator_to_panel (op_panel);
-
 	//  Add the Color listbox to the 'Object Properties' Panel
 	GLUI_Listbox *color_listbox = glui_window->add_listbox_to_panel (op_panel, 
 									"Color", &listbox_item_id, COLOR_LISTBOX, glui_callback);
-	
+
 	//  Add the items to the listbox
 	color_listbox->add_item (1, "Black");
 	color_listbox->add_item (2, "Blue");
@@ -339,87 +244,111 @@ void setupGLUI ()
 	//  Select the White Color by default
 	color_listbox->set_int_val (12);
 
-	//---------------------------------------------------------------------
 	// 'Transformation' Panel
-	//---------------------------------------------------------------------
-
 	//  Add the 'Transformation' Panel to the GLUI window
 	GLUI_Panel *transformation_panel = glui_window->add_panel ("Transformation");
-
 	//  Create transformation panel 1 that will contain the Translation controls
 	GLUI_Panel *transformation_panel1 = glui_window->add_panel_to_panel (transformation_panel, "");
-
 	//  Add the xy translation control
 	GLUI_Translation *translation_x = glui_window->add_translation_to_panel (transformation_panel1, "Translation X", GLUI_TRANSLATION_X, &translate_x, TRANSLATION_X, glui_callback );
-	
 	//  Set the translation speed
 	translation_x->set_speed( 0.005 );
-
 		//  Add column, but don't draw it
 	glui_window->add_column_to_panel (transformation_panel1, false);
 
 	GLUI_Translation *translation_y = glui_window->add_translation_to_panel (transformation_panel1, "Translation Y", GLUI_TRANSLATION_Y, &translate_y, TRANSLATION_Y, glui_callback );
 	translation_y->set_speed( 0.005 );
-
 	//  Add column, but don't draw it
 	glui_window->add_column_to_panel (transformation_panel1, false);
-
 	//  Add the z translation control
 	GLUI_Translation *translation_z = glui_window->add_translation_to_panel (transformation_panel1, "Translation Z", GLUI_TRANSLATION_Z, &translate_z, TRANSLATION_Z, glui_callback );
-
 	//  Set the translation speed
 	translation_z->set_speed( 0.005 );
-
 	//  Create transformation panel 2 that will contain the rotation and spinner controls
 	GLUI_Panel *transformation_panel2 = glui_window->add_panel_to_panel (transformation_panel, "");
-
 	//  Add the rotation control
 	glui_window->add_rotation_to_panel (transformation_panel2, "Rotation", rotation_matrix, ROTATION, glui_callback);
-	
-	//  Add separator
+		//  Add separator
 	glui_window->add_separator_to_panel (transformation_panel2);
-
 	//  Add the scale spinner
 	GLUI_Spinner *spinner = glui_window->add_spinner_to_panel (transformation_panel2, "Scale", GLUI_SPINNER_FLOAT, &scale, SCALE_SPINNER, glui_callback);
-	
 	//  Set the limits for the spinner
 	spinner->set_float_limits ( -4.0, 4.0 );
 
-	//---------------------------------------------------------------------
 	// 'Quit' Button
-	//---------------------------------------------------------------------
-
 	//  Add the Quit Button
 	glui_window->add_button ("Quit", QUIT_BUTTON, glui_callback);
-
 	//  Let the GLUI window know where its main graphics window is
 	glui_window->set_main_gfx_window( main_window );
 }
-int e = 0;
 
-void addEdge(polig polygon) {
+void resetCoordinates() {
+	for(int i = 0; i < no_polygons; i++) {
+		for(int j = 0; j < 3; j++) {
+			polygons[i].vertex[j].x = NULL; 
+			polygons[i].vertex[j].y = NULL; 
+			polygons[i].vertex[j].z = NULL; 
+		}		
+	}
 
-					edges[e][0] = polygon.vertex[0];
-					edges[e][1] = polygon.vertex[1];
-					e++;
-					edges[e][0] = polygon.vertex[0];
-					edges[e][1] = polygon.vertex[2];
-					e++;
-					edges[e][0] = polygon.vertex[1];
-					edges[e][1] = polygon.vertex[2];	
-					e++;
+	for(int k = 0; k < e; k++) {
+		edges[k][0].x = NULL;
+		edges[k][0].y = NULL;
+		edges[k][0].z = NULL;
+		edges[k][1].x = NULL;
+		edges[k][1].y = NULL;
+		edges[k][1].z = NULL;
+	}
 
-
-
-					for(int g =0; g < e; g++){
-					printf("edge:  X: %d, Y: %d, Z: %d   ", edges[g][0].x, edges[g][0].y, edges[g][0].z);
-					printf("edge:  X: %d, Y: %d, Z: %d\n", edges[g][1].x, edges[g][1].y, edges[g][1].z);
-					}
+	no_polygons = 0;
+	polygonIndex = 0;
+	vertecesIndex = 0;
+	e = 0;
 }
 
-bool checkIfCommonEdge (polig polygon) {
-	int i, j;
-	int counter = 0;
+//determinantul este 0
+bool checkIfCollinearPoints(polig polygon)
+{
+	int expression;
+	expression = (polygon.vertex[0].x * polygon.vertex[1].y * polygon.vertex[2].z) + (polygon.vertex[2].x * polygon.vertex[0].y * polygon.vertex[1].z);
+	expression = expression + (polygon.vertex[1].x * polygon.vertex[2].y * polygon.vertex[0].z) - (polygon.vertex[2].x * polygon.vertex[1].y * polygon.vertex[0].z);
+	expression = expression - (polygon.vertex[0].x * polygon.vertex[2].y * polygon.vertex[1].z) - (polygon.vertex[1].x * polygon.vertex[0].y * polygon.vertex[2].z);
+
+	return expression == 0;
+}
+
+bool checkIfSameCoordinatesForAllVerteces(polig polygon) 
+{
+	bool x_coord = (polygon.vertex[0].x == polygon.vertex[1].x) && (polygon.vertex[0].x == polygon.vertex[2].x) && (polygon.vertex[1].x == polygon.vertex[2].x);
+	bool y_coord = (polygon.vertex[0].y == polygon.vertex[1].y) && (polygon.vertex[0].y == polygon.vertex[2].y) && (polygon.vertex[1].y == polygon.vertex[2].y);
+	bool z_coord = (polygon.vertex[0].z == polygon.vertex[1].z) && (polygon.vertex[0].z == polygon.vertex[2].z) && (polygon.vertex[1].z == polygon.vertex[2].z);
+
+	return x_coord && y_coord && z_coord;
+}
+
+void addEdge(polig polygon) 
+{
+		edges[e][0] = polygon.vertex[0];
+		edges[e][1] = polygon.vertex[1];
+		e++;
+		edges[e][0] = polygon.vertex[0];
+		edges[e][1] = polygon.vertex[2];
+		e++;
+		edges[e][0] = polygon.vertex[1];
+		edges[e][1] = polygon.vertex[2];	
+		e++;
+		/*	
+		for(int g =0; g < e; g++){
+			printf("edge:  X: %d, Y: %d, Z: %d   ", edges[g][0].x, edges[g][0].y, edges[g][0].z);
+			printf("edge:  X: %d, Y: %d, Z: %d\n", edges[g][1].x, edges[g][1].y, edges[g][1].z);
+		}
+		*/
+}
+
+bool checkIfCommonEdge (polig polygon) 
+{
+	int i;
+	bool edgeFound = false;
 	
 	for(i = 0; i < e; i++) {
 			bool expr1 = ((polygon.vertex[0].x == edges[i][0].x) &&  (polygon.vertex[0].y == edges[i][0].y) &&  (polygon.vertex[0].z == edges[i][0].z));
@@ -450,20 +379,16 @@ bool checkIfCommonEdge (polig polygon) {
 			bool expr12b = ((expr6 && expr3));
 
 			if(expr7a || expr8a || expr9a || expr7b || expr8b || expr9b || expr10a || expr11a || expr12a || expr10b || expr11b || expr12b) {
-				counter++;			
+				edgeFound = true;			
 			}
 	}
 
-	if(counter == 1) {
+	if(edgeFound) {
 		return true;
 	}
-
 	return false;
-
 }
-//-------------------------------------------------------------------------
-//  GLUI callback function.
-//-------------------------------------------------------------------------
+
 void glui_callback (int control_id)
 {
 	//  Behave based on control ID
@@ -471,9 +396,7 @@ void glui_callback (int control_id)
 	{
 		//  Color Listbox item changed
 		case COLOR_LISTBOX:
-
 			printf ("Color List box item changed: ");
-
 			switch (listbox_item_id)
 			{
 				//  Select black color
@@ -555,16 +478,7 @@ void glui_callback (int control_id)
 					color[2] = 0/255.0;
 					break;
 			}
-
 			printf ("Item %d selected.\n", listbox_item_id);
-
-		break;
-		
-		case VERTECES:
-
-			printf ("Number of points/polygon: %d\n", verteces);
-			chosenV = true;
-
 		break;
 
 		case NO_POLYGONS:
@@ -572,7 +486,6 @@ void glui_callback (int control_id)
 			chosen = true;
 		break;
 
-			//  Ok Button clicked
 		case OK_BUTTON:
 			if(polygonIndex < no_polygons) {
 
@@ -590,10 +503,6 @@ void glui_callback (int control_id)
 							printf("All verteces have the same coordinates; please insert other coordinates\n");
 							break;
 						}
-						/*if(checkIfCollinearPoints(polygons[polygonIndex])) {
-							printf("Given verteces are collinear; please insert other coordinates\n");
-							break;
-						}*/
 						addEdge(polygons[polygonIndex]);
 						polygonIndex++;
 					}
@@ -605,20 +514,13 @@ void glui_callback (int control_id)
 					polygons[polygonIndex].vertex[vertecesIndex].z = point_z;
 					printf("Polygon number: %d, vertex %d = X: %d, Y: %d, Z: %d\n", polygonIndex, vertecesIndex, point_x, point_y, point_z);
 			
-					vertecesIndex++;
-
-		
+					vertecesIndex++;		
 					if(vertecesIndex == 3 ) {
 						vertecesIndex = 0;
 						if(checkIfSameCoordinatesForAllVerteces(polygons[polygonIndex])) {
 							printf("All verteces have the same coordinates; please insert other coordinates\n");
 							break;
 						}
-						/*if(checkIfCollinearPoints(polygons[polygonIndex])) {
-							printf("Given verteces are collinear; please insert other coordinates\n");
-							break;
-						}
-						*/
 						if(checkIfCommonEdge(polygons[polygonIndex])) {
 							addEdge(polygons[polygonIndex]);	
 							polygonIndex++;
@@ -636,157 +538,100 @@ void glui_callback (int control_id)
 			}
 		break;
 
-		case RESET_BUTTON:			
+		case RESET_BUTTON:	
 			chosen = false;
 			edittext_polygons->enable();
-			chosenV = false;
-			edittext_verteces->enable();
 			resetCoordinates();
-			//index = 0;
-			polygonIndex = 0;
-			vertecesIndex = 0;
 		break;
 
-		//  Translation XY control
 		case TRANSLATION_X:
-
 			printf ("Translating X: ");
 			printf ("X: %f, Y: %f.\n", translate_x, translate_x);
-
 			break;
 
 		case TRANSLATION_Y:
-
 			printf ("Translating X: ");
 			printf ("X: %f, Y: %f.\n", translate_y, translate_y);
-
 			break;
 
-		//  Translation Z control
 		case TRANSLATION_Z:
-
 			printf ("Translating Z coordinate: ");
 			printf ("Z: %f.\n", translate_z);
-
 			break;
 
-		//  rotation control is being rotated
 		case ROTATION:
-
 			printf ("Rotating archball!\n");
 			printMatrixf (rotation_matrix);
-
 		break;
 
-		//  Scaling
 		case SCALE_SPINNER:
-
 			printf ("Scaling Object: %f.\n", scale);
-
 		break;
 
-		//  Quit Button clicked
-		case QUIT_BUTTON:
-		
+		case QUIT_BUTTON:		
 			printf ("Exit!\n");
-
 			exit (1);
-
 		break;
 
 	}
 }
 
-//-------------------------------------------------------------------------
-//  This function is passed to glutDisplayFunc in order to display 
-//	OpenGL contents on the window.
-//-------------------------------------------------------------------------
 void display (void)
 {	
-    GLfloat low_ambient[] = { 0.1, 0.1, 0.1, 1.0 };
     GLfloat more_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
-    GLfloat most_ambient[] = { 1.0, 1.0, 1.0, 1.0 };
-
 	//  Clear the window 
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity ();
 
-	 glLoadIdentity ();
-	//  Set the color
-	//glColor3fv (color);
-
-    /*  material has small ambient reflection   */
-	//coeficient de reflexie pentru lumina ambientala mic
     glMaterialfv(GL_FRONT, GL_AMBIENT, more_ambient);
     glMaterialf(GL_FRONT, GL_SHININESS, 100.0);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	drawObject();
 
+	drawObject();
 	//  Swap contents of backward and forward frame buffers
 	glutSwapBuffers (); 
-
 }
 
-//-------------------------------------------------------------------------
-//  Draws our object.
-//-------------------------------------------------------------------------
 void drawObject ()
-{
+{	
 	//  Draw the object only if the Draw check box is selected
 	if (draw)
 	{
 		if (chosen == true) {
 			edittext_polygons->disable();
-			//chosen = false;
-		}
-		if (chosenV == true) {
-			edittext_verteces->disable();
-			//chosenV = false;
 		}
 
 		glPushMatrix ();	
-		//  Apply the translation
 		glTranslatef (translate_x, translate_y, -translate_z);
 		//  Apply the rotation matrix
 		glMultMatrixf (rotation_matrix);
-		//  Apply the scaling
 		glScalef (scale, scale, scale);
-int i, j, k = 0;
+
+		int i, j;
 		if(wireframe) {
-				for(j = 0; j < no_polygons; j++){
+				for(j = 0; j < no_polygons; j++) {
 					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 					glBegin(GL_TRIANGLE_STRIP);  				
 					for(i = 0; i < verteces; i++){
-					 //glVertex3f(points[k].x, points[k].y, points[k].z);
 						glVertex3f(polygons[j].vertex[i].x, polygons[j].vertex[i].y, polygons[j].vertex[i].z);
-						k++;
-			}				
+					}				
 					glEnd();
-		}
+				}
 		}
 		else {
 				for(j = 0; j < no_polygons; j++){
 					glBegin(GL_TRIANGLE_STRIP);  				
-					for(i = 0; i < verteces; i++){
-					 //glVertex3f(points[k].x, points[k].y, points[k].z);
+					for(i = 0; i < verteces; i++) {
 						glVertex3f(polygons[j].vertex[i].x, polygons[j].vertex[i].y, polygons[j].vertex[i].z);
-						k++;
-			}				
+					}				
 					glEnd();
+				}
 		}
-
         //  Pop our matrix from the model view stack after we finish drawing
 		glPopMatrix ();
 	}
 }
 
-//-------------------------------------------------------------------------
-//  Idle Callback function.
-//
-//  Set the main_window as the current window to avoid sending the
-//  redisplay to the GLUI window rather than the GLUT window. 
-//  Call the Sleep function to stop the GLUI program from causing
-//  starvation.
-//-------------------------------------------------------------------------
 void idle ()
 {
 	glutSetWindow (main_window);
@@ -794,40 +639,22 @@ void idle ()
 	Sleep (50);
 }
 
-//*************************************************************************
-//  Program Main method.
-//*************************************************************************
 void main (int argc, char **argv)
 {
-	//  Set the window x and y coordinates such that the 
-	//  window becomes centered
 	centerOnScreen ();
 
-	//  Connect to the windowing system + create a window
-	//  with the specified dimensions and position
-	//  + set the display mode + specify the window title.
 	glutInit(&argc, argv);
 	glutInitWindowSize (window_width, window_height);
 	glutInitWindowPosition (window_x, window_y);
 	glutInitDisplayMode (GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	main_window = glutCreateWindow (window_title);
 
-	//  View in full screen if the full_screen flag is on
 	if (full_screen)
 		glutFullScreen ();
 
-
-	//  Set OpenGL context initial state.
 	init();
-
-	// Set the GLUT callback functions
 	glutDisplayFunc (display);
 	glutReshapeFunc  (reshape);
-	glutKeyboardFunc (keyboard);
-	//  Setup all GLUI stuff
 	setupGLUI ();
-
-	//  Start GLUT event processing loop
-	glutMainLoop();
-	
+	glutMainLoop();	
 }

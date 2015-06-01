@@ -1,14 +1,48 @@
-﻿Build started 6/1/2015 7:03:48 PM.
+﻿Build started 6/1/2015 10:42:12 PM.
      1>Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ModelareSuprafetePoligonale.cpp
          ModelareSuprafetePoligonale.cpp
-     1>d:\faculta\an 2\sem 2\grafica\polygonal-modeling\polygonal-modeling-graphics\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp : fatal error C1033: cannot open program database 'd:\faculta\an 2\sem 2\grafica\polygonal-modeling\polygonal-modeling-graphics\modelaresuprafetepoligonale\debug\vc100.idb'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(205): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(796): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(810): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(811): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(852): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(894): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(955): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(999): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : see declaration of 'strcpy'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1286): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1386): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1481): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1531): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\include\gl\glui.h(1646): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
      1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
-     1>Done Building Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" (build target(s)) -- FAILED.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe" /INCREMENTAL:NO /NOLOGO glu32.lib glut32.lib opengl32.lib glaux.lib glui32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBCD.lib /MANIFEST /ManifestFile:"Debug\ModelareSuprafetePoligonale.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.lib" /MACHINE:X86 Debug\ModelareSuprafetePoligonale.obj
+     1>ModelareSuprafetePoligonale.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+         ModelareSuprafetePoligonale.vcxproj -> D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe;#1" /manifest Debug\ModelareSuprafetePoligonale.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild".
+         Touching "Debug\ModelareSuprafetePoligonale.lastbuildstate".
+     1>Done Building Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.17
+Time Elapsed 00:00:02.74
