@@ -75,23 +75,23 @@ int verteces = 3;
 int point_x = 0;
 int point_y = 0;
 int point_z = 0;
-
+/*
 struct coordinates {
 	int x;
 	int y;
 	int z;
 }points[10];
 
-/*
+*/
 struct coordinates {
 	int x;
 	int y;
 	int z;
 };
-*/
+
 //every polygon has 3 points with 3 coordinates x, y, z
 struct polig {
-	coordinates verteces[3];
+	coordinates vertex[3];
 }polygons[50];
 
 //keeps every polygons' vertex
@@ -491,23 +491,26 @@ void glui_callback (int control_id)
 
 			//  Ok Button clicked
 		case OK_BUTTON:
+			if(polygonIndex < no_polygons) {
+				polygons[polygonIndex].vertex[vertecesIndex].x = point_x;
+				polygons[polygonIndex].vertex[vertecesIndex].y = point_y;
+				polygons[polygonIndex].vertex[vertecesIndex].z = point_z;
+				printf("Polygon number: %d, vertex %d = X: %d, Y: %d, Z: %d\n", polygonIndex, vertecesIndex, point_x, point_y, point_z);
 			
-			printf ("X: %d, Y: %d, Z: %d\n", point_x, point_y, point_z );
-			/*polygons[polygonIndex].verteces[vertecesIndex].x = point_x;
-			polygons[polygonIndex].verteces[vertecesIndex].y = point_y;
-			polygons[polygonIndex].verteces[vertecesIndex].z = point_z;
-			
-			polygonIndex++;
-			vertecesIndex++;
-
-			if(vertecesIndex >=3 ) {
-				printf ("enough verteces");
+				vertecesIndex++;
+			}
+			if(vertecesIndex == 3 ) {
 				vertecesIndex = 0;
-			} */
-			points[index].x = point_x;
+				polygonIndex++;
+			
+			} 
+
+
+
+			/*points[index].x = point_x;
 			points[index].y = point_y;
 			points[index].z = point_z;
-			index++;
+			index++;*/
 			
 		break;
 
@@ -632,8 +635,8 @@ void drawObject ()
 				for(j = 0; j < no_polygons; j++){
 					glBegin(GL_POLYGON);  				
 					for(i = 0; i < verteces; i++){
-					 glVertex3f(points[k].x, points[k].y, points[k].z);
-						//glVertex3f(polygons[j].verteces[k].x, polygons[j].verteces[k].y, polygons[j].verteces[k].z);
+					 //glVertex3f(points[k].x, points[k].y, points[k].z);
+						glVertex3f(polygons[j].vertex[k].x, polygons[j].vertex[k].y, polygons[j].vertex[k].z);
 						k++;
 			}				
 					glEnd();
