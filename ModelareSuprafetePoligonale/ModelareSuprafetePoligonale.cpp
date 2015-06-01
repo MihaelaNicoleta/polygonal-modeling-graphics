@@ -13,9 +13,6 @@
 
 //  Initialization
 void init ();
-bool checkIfCommonLine(void);
-
-
 //  Callback functions
 void display (void);
 void reshape (int w, int h);
@@ -95,6 +92,7 @@ struct polig {
 	coordinates vertex[3];
 }polygons[50];
 
+coordinates edges[150][2];
 //keeps every polygons' vertex
 int vertecesMatrix[50][3];
 
@@ -112,6 +110,7 @@ void glui_callback (int arg);
 void turnOnTheLight(void);
 bool checkIfCollinearPoints(polig polygon);
 bool checkIfSameCoordinatesForAllVerteces(polig polygon);
+bool checkIfCommonEdge (polig polygon);
 
 //  Declare the IDs of controls generating callbacks
 enum
@@ -119,7 +118,7 @@ enum
 	COLOR_LISTBOX = 0,
 	OBJECTYPE_RADIOGROUP,
 	NO_POLYGONS,
-	VERTECES,
+	VERTECES=3,
 	POINT_X,
 	POINT_Y,
 	POINT_Z,
@@ -249,13 +248,7 @@ void reshape (int w, int h)
 }
 
 void resetCoordinates() {
-	/*
-		for(int i = 0; i < 10; i++) {
-			points[i].x = 0;
-			points[i].y = 0;
-			points[i].z = 0;
-		}
-		*/
+
 }
 //-------------------------------------------------------------------------
 //  This function is passed to the glutKeyboardFunc and is called 
@@ -285,12 +278,12 @@ void setupGLUI ()
 	//---------------------------------------------------------------------
 	GLUI_Panel *polygon_panel = glui_window->add_panel ("Polygon");
 	edittext_polygons = glui_window->add_edittext_to_panel(polygon_panel, "Number of polygons: ", GLUI_EDITTEXT_INT, &no_polygons, NO_POLYGONS, glui_callback);
-	edittext_polygons->set_int_limits(1, 10);
+	edittext_polygons->set_int_limits(1, 100);
 		//  Add separator
 	glui_window->add_separator_to_panel (polygon_panel);
 	GLUI_Panel *vertex_panel = glui_window->add_panel_to_panel (polygon_panel, "Verteces");
 	edittext_verteces = glui_window->add_edittext_to_panel(vertex_panel, "Number of verteces per polygon: ", GLUI_EDITTEXT_INT, &verteces, VERTECES, glui_callback);
-	edittext_verteces->set_int_limits(3, 10);
+	edittext_verteces->disable();
 
 	GLUI_Panel *points_panel = glui_window->add_panel_to_panel (vertex_panel, "Coordinates");
 
@@ -402,7 +395,51 @@ void setupGLUI ()
 	//  Let the GLUI window know where its main graphics window is
 	glui_window->set_main_gfx_window( main_window );
 }
+int e = 0;
 
+void addEdge(polig polygon) {
+
+					edges[e][0] = polygon.vertex[0];
+					edges[e][1] = polygon.vertex[1];
+					e++;
+					edges[e][0] = polygon.vertex[0];
+					edges[e][1] = polygon.vertex[2];
+					e++;
+					edges[e][0] = polygon.vertex[1];
+					edges[e][1] = polygon.vertex[2];	
+					e++;
+
+
+
+					for(int g =0; g < e; g++){
+					printf("edge:  X: %d, Y: %d, Z: %d   ", edges[g][0].x, edges[g][0].y, edges[g][0].z);
+					printf("edge:  X: %d, Y: %d, Z: %d\n", edges[g][1].x, edges[g][1].y, edges[g][1].z);
+					}
+}
+
+bool checkIfCommonEdge (polig polygon) {
+	int i, j;
+	
+	for(i = 0; i < e; i++) {
+			bool expr1 = ((polygon.vertex[0].x == edges[i][0].x) &&  (polygon.vertex[0].y == edges[i][0].y) &&  (polygon.vertex[0].z == edges[i][0].z));
+			bool expr2 = ((polygon.vertex[0].x == edges[i][1].x) &&  (polygon.vertex[0].y == edges[i][1].y) &&  (polygon.vertex[0].z == edges[i][1].z));
+			bool expr3 = ((polygon.vertex[1].x == edges[i][0].x) &&  (polygon.vertex[1].y == edges[i][0].y) &&  (polygon.vertex[1].z == edges[i][0].z));
+			bool expr4 = ((polygon.vertex[1].x == edges[i][1].x) &&  (polygon.vertex[1].y == edges[i][1].y) &&  (polygon.vertex[1].z == edges[i][1].z));
+			bool expr5 = ((polygon.vertex[2].x == edges[i][0].x) &&  (polygon.vertex[2].y == edges[i][0].y) &&  (polygon.vertex[2].z == edges[i][0].z));
+			bool expr6 = ((polygon.vertex[2].x == edges[i][1].x) &&  (polygon.vertex[2].y == edges[i][1].y) &&  (polygon.vertex[2].z == edges[i][1].z));
+
+			bool expr7 = ((expr1 && expr4));
+			bool expr8 = ((expr3 && expr6));
+			bool expr9 = ((expr5 && expr2));
+
+			if(expr7 || expr8 || expr9) {
+				return true;			
+			}
+	}
+
+	return false;
+
+}
 //-------------------------------------------------------------------------
 //  GLUI callback function.
 //-------------------------------------------------------------------------
@@ -517,37 +554,65 @@ void glui_callback (int control_id)
 			//  Ok Button clicked
 		case OK_BUTTON:
 			if(polygonIndex < no_polygons) {
-				polygons[polygonIndex].vertex[vertecesIndex].x = point_x;
-				polygons[polygonIndex].vertex[vertecesIndex].y = point_y;
-				polygons[polygonIndex].vertex[vertecesIndex].z = point_z;
-				printf("Polygon number: %d, vertex %d = X: %d, Y: %d, Z: %d\n", polygonIndex, vertecesIndex, point_x, point_y, point_z);
+
+				if(polygonIndex == 0) {
+					polygons[polygonIndex].vertex[vertecesIndex].x = point_x;
+					polygons[polygonIndex].vertex[vertecesIndex].y = point_y;
+					polygons[polygonIndex].vertex[vertecesIndex].z = point_z;
+					printf("Polygon number: %d, vertex %d = X: %d, Y: %d, Z: %d\n", polygonIndex, vertecesIndex, point_x, point_y, point_z);
 			
-				vertecesIndex++;
+					vertecesIndex++;
+
+					if(vertecesIndex == 3 ) {
+						vertecesIndex = 0;
+						if(checkIfSameCoordinatesForAllVerteces(polygons[polygonIndex])) {
+							printf("All verteces have the same coordinates; please insert other coordinates\n");
+							break;
+						}
+						if(checkIfCollinearPoints(polygons[polygonIndex])) {
+							printf("Given verteces are collinear; please insert other coordinates\n");
+							break;
+						}
+						addEdge(polygons[polygonIndex]);
+						polygonIndex++;
+					}
+				}
+			else {
+			
+					polygons[polygonIndex].vertex[vertecesIndex].x = point_x;
+					polygons[polygonIndex].vertex[vertecesIndex].y = point_y;
+					polygons[polygonIndex].vertex[vertecesIndex].z = point_z;
+					printf("Polygon number: %d, vertex %d = X: %d, Y: %d, Z: %d\n", polygonIndex, vertecesIndex, point_x, point_y, point_z);
+			
+					vertecesIndex++;
+
+		
+					if(vertecesIndex == 3 ) {
+						vertecesIndex = 0;
+						if(checkIfSameCoordinatesForAllVerteces(polygons[polygonIndex])) {
+							printf("All verteces have the same coordinates; please insert other coordinates\n");
+							break;
+						}
+						if(checkIfCollinearPoints(polygons[polygonIndex])) {
+							printf("Given verteces are collinear; please insert other coordinates\n");
+							break;
+						}
+
+						if(checkIfCommonEdge(polygons[polygonIndex])) {
+							addEdge(polygons[polygonIndex]);	
+							polygonIndex++;
+						}
+						else {
+							printf("This shape is incorrect; please insert other coordinates\n");
+							for (int i = 0; i < 3; i++) {
+								polygons[polygonIndex].vertex[i].x = 0;
+								polygons[polygonIndex].vertex[i].y = 0;
+								polygons[polygonIndex].vertex[i].z = 0;
+							}
+						}
+					}			
+				} 
 			}
-
-			
-			if(vertecesIndex == 3 ) {
-				vertecesIndex = 0;
-				if(checkIfSameCoordinatesForAllVerteces(polygons[polygonIndex])) {
-					printf("All verteces have the same coordinates");
-					break;
-				}
-				if(checkIfCollinearPoints(polygons[polygonIndex])) {
-					printf("Given verteces are collinear");
-					break;
-				}
-
-				polygonIndex++;
-			
-			} 
-
-
-
-			/*points[index].x = point_x;
-			points[index].y = point_y;
-			points[index].z = point_z;
-			index++;*/
-			
 		break;
 
 		case RESET_BUTTON:			
