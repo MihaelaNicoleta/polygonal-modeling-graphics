@@ -43,7 +43,10 @@ bool chosen = false;
 bool chosenV = false;
 
 //coordinates index
-int index = 0;
+int index = 0;  //replaced with polygon index
+
+int polygonIndex = 0;
+int vertecesIndex = 0;
 
 //*************************************************************************
 //  GLUI Declarations
@@ -78,6 +81,21 @@ struct coordinates {
 	int y;
 	int z;
 }points[10];
+
+/*
+struct coordinates {
+	int x;
+	int y;
+	int z;
+};
+*/
+//every polygon has 3 points with 3 coordinates x, y, z
+struct polig {
+	coordinates verteces[3];
+}polygons[50];
+
+//keeps every polygons' vertex
+int vertecesMatrix[50][3];
 
 // an array of RGB components
 float color[] = { 1.0, 1.0, 1.0 };
@@ -206,13 +224,13 @@ void reshape (int w, int h)
 }
 
 void resetCoordinates() {
-
+	/*
 		for(int i = 0; i < 10; i++) {
 			points[i].x = 0;
 			points[i].y = 0;
 			points[i].z = 0;
 		}
-
+		*/
 }
 //-------------------------------------------------------------------------
 //  This function is passed to the glutKeyboardFunc and is called 
@@ -475,20 +493,33 @@ void glui_callback (int control_id)
 		case OK_BUTTON:
 			
 			printf ("X: %d, Y: %d, Z: %d\n", point_x, point_y, point_z );
+			/*polygons[polygonIndex].verteces[vertecesIndex].x = point_x;
+			polygons[polygonIndex].verteces[vertecesIndex].y = point_y;
+			polygons[polygonIndex].verteces[vertecesIndex].z = point_z;
+			
+			polygonIndex++;
+			vertecesIndex++;
+
+			if(vertecesIndex >=3 ) {
+				printf ("enough verteces");
+				vertecesIndex = 0;
+			} */
 			points[index].x = point_x;
 			points[index].y = point_y;
 			points[index].z = point_z;
 			index++;
+			
 		break;
 
-		case RESET_BUTTON:
-			
+		case RESET_BUTTON:			
 			chosen = false;
 			edittext_polygons->enable();
 			chosenV = false;
 			edittext_verteces->enable();
 			resetCoordinates();
-			index = 0;
+			//index = 0;
+			polygonIndex = 0;
+			vertecesIndex = 0;
 		break;
 
 		//  Translation XY control
@@ -599,13 +630,13 @@ void drawObject ()
 			int i, j, k = 0;
 
 				for(j = 0; j < no_polygons; j++){
-
-				glBegin(GL_POLYGON);  				
-				for(i = 0; i < verteces; i++){
+					glBegin(GL_POLYGON);  				
+					for(i = 0; i < verteces; i++){
 					 glVertex3f(points[k].x, points[k].y, points[k].z);
-					 k++;
+						//glVertex3f(polygons[j].verteces[k].x, polygons[j].verteces[k].y, polygons[j].verteces[k].z);
+						k++;
 			}				
-				glEnd();
+					glEnd();
 		}
 		}
 		else {
@@ -669,4 +700,3 @@ void main (int argc, char **argv)
 	glutMainLoop();
 	
 }
-
