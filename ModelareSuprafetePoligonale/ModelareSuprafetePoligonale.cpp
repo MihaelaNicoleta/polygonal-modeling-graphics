@@ -419,22 +419,43 @@ void addEdge(polig polygon) {
 
 bool checkIfCommonEdge (polig polygon) {
 	int i, j;
+	int counter = 0;
 	
 	for(i = 0; i < e; i++) {
 			bool expr1 = ((polygon.vertex[0].x == edges[i][0].x) &&  (polygon.vertex[0].y == edges[i][0].y) &&  (polygon.vertex[0].z == edges[i][0].z));
 			bool expr2 = ((polygon.vertex[0].x == edges[i][1].x) &&  (polygon.vertex[0].y == edges[i][1].y) &&  (polygon.vertex[0].z == edges[i][1].z));
+
 			bool expr3 = ((polygon.vertex[1].x == edges[i][0].x) &&  (polygon.vertex[1].y == edges[i][0].y) &&  (polygon.vertex[1].z == edges[i][0].z));
 			bool expr4 = ((polygon.vertex[1].x == edges[i][1].x) &&  (polygon.vertex[1].y == edges[i][1].y) &&  (polygon.vertex[1].z == edges[i][1].z));
+
 			bool expr5 = ((polygon.vertex[2].x == edges[i][0].x) &&  (polygon.vertex[2].y == edges[i][0].y) &&  (polygon.vertex[2].z == edges[i][0].z));
 			bool expr6 = ((polygon.vertex[2].x == edges[i][1].x) &&  (polygon.vertex[2].y == edges[i][1].y) &&  (polygon.vertex[2].z == edges[i][1].z));
 
-			bool expr7 = ((expr1 && expr4));
-			bool expr8 = ((expr3 && expr6));
-			bool expr9 = ((expr5 && expr2));
+			bool expr7a = ((expr1 && expr4));
+			bool expr7b = ((expr1 && expr6));
 
-			if(expr7 || expr8 || expr9) {
-				return true;			
+			bool expr8a = ((expr3 && expr1));
+			bool expr8b = ((expr3 && expr6));
+
+			bool expr9a = ((expr5 && expr2));
+			bool expr9b = ((expr5 && expr4));
+
+			bool expr10a = ((expr2 && expr3));
+			bool expr10b = ((expr2 && expr5));
+
+			bool expr11a = ((expr4 && expr1));
+			bool expr11b = ((expr4 && expr5));
+
+			bool expr12a = ((expr6 && expr1));
+			bool expr12b = ((expr6 && expr3));
+
+			if(expr7a || expr8a || expr9a || expr7b || expr8b || expr9b || expr10a || expr11a || expr12a || expr10b || expr11b || expr12b) {
+				counter++;			
 			}
+	}
+
+	if(counter == 1) {
+		return true;
 	}
 
 	return false;
@@ -569,10 +590,10 @@ void glui_callback (int control_id)
 							printf("All verteces have the same coordinates; please insert other coordinates\n");
 							break;
 						}
-						if(checkIfCollinearPoints(polygons[polygonIndex])) {
+						/*if(checkIfCollinearPoints(polygons[polygonIndex])) {
 							printf("Given verteces are collinear; please insert other coordinates\n");
 							break;
-						}
+						}*/
 						addEdge(polygons[polygonIndex]);
 						polygonIndex++;
 					}
@@ -593,11 +614,11 @@ void glui_callback (int control_id)
 							printf("All verteces have the same coordinates; please insert other coordinates\n");
 							break;
 						}
-						if(checkIfCollinearPoints(polygons[polygonIndex])) {
+						/*if(checkIfCollinearPoints(polygons[polygonIndex])) {
 							printf("Given verteces are collinear; please insert other coordinates\n");
 							break;
 						}
-
+						*/
 						if(checkIfCommonEdge(polygons[polygonIndex])) {
 							addEdge(polygons[polygonIndex]);	
 							polygonIndex++;
@@ -729,12 +750,11 @@ void drawObject ()
 		glMultMatrixf (rotation_matrix);
 		//  Apply the scaling
 		glScalef (scale, scale, scale);
-
+int i, j, k = 0;
 		if(wireframe) {
-			int i, j, k = 0;
-
 				for(j = 0; j < no_polygons; j++){
-					glBegin(GL_POLYGON);  				
+					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+					glBegin(GL_TRIANGLE_STRIP);  				
 					for(i = 0; i < verteces; i++){
 					 //glVertex3f(points[k].x, points[k].y, points[k].z);
 						glVertex3f(polygons[j].vertex[i].x, polygons[j].vertex[i].y, polygons[j].vertex[i].z);
@@ -744,7 +764,14 @@ void drawObject ()
 		}
 		}
 		else {
-			auxSolidTeapot(0.5);
+				for(j = 0; j < no_polygons; j++){
+					glBegin(GL_TRIANGLE_STRIP);  				
+					for(i = 0; i < verteces; i++){
+					 //glVertex3f(points[k].x, points[k].y, points[k].z);
+						glVertex3f(polygons[j].vertex[i].x, polygons[j].vertex[i].y, polygons[j].vertex[i].z);
+						k++;
+			}				
+					glEnd();
 		}
 
         //  Pop our matrix from the model view stack after we finish drawing

@@ -1,17 +1,14 @@
-﻿Build started 6/1/2015 6:16:59 PM.
+﻿Build started 6/1/2015 7:03:48 PM.
      1>Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         All outputs are up-to-date.
-       Link:
-         All outputs are up-to-date.
-         ModelareSuprafetePoligonale.vcxproj -> D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\Debug\ModelareSuprafetePoligonale.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\ModelareSuprafetePoligonale.unsuccessfulbuild".
-         Touching "Debug\ModelareSuprafetePoligonale.lastbuildstate".
-     1>Done Building Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" (build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ModelareSuprafetePoligonale.cpp
+         ModelareSuprafetePoligonale.cpp
+     1>d:\faculta\an 2\sem 2\grafica\polygonal-modeling\polygonal-modeling-graphics\modelaresuprafetepoligonale\modelaresuprafetepoligonale.cpp : fatal error C1033: cannot open program database 'd:\faculta\an 2\sem 2\grafica\polygonal-modeling\polygonal-modeling-graphics\modelaresuprafetepoligonale\debug\vc100.idb'
+     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+     1>Done Building Project "D:\Faculta\An 2\Sem 2\Grafica\Polygonal-Modeling\polygonal-modeling-graphics\ModelareSuprafetePoligonale\ModelareSuprafetePoligonale.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.11
+Time Elapsed 00:00:00.17
