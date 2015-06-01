@@ -13,7 +13,8 @@
 
 //  Initialization
 void init ();
-bool checkIfCommonLine();
+bool checkIfCommonLine(void);
+
 
 //  Callback functions
 void display (void);
@@ -74,7 +75,7 @@ int no_polygons = 0;
 int verteces = 3;
 int point_x = 0;
 int point_y = 0;
-int point_z = 0;
+int point_z = 1;
 /*
 struct coordinates {
 	int x;
@@ -109,6 +110,8 @@ void resetCoordinates ();
 //  Declare callbacks related to GLUI
 void glui_callback (int arg);
 void turnOnTheLight(void);
+bool checkIfCollinearPoints(polig polygon);
+bool checkIfSameCoordinatesForAllVerteces(polig polygon);
 
 //  Declare the IDs of controls generating callbacks
 enum
@@ -137,6 +140,28 @@ void printMatrixf (float *matrix);
 //*************************************************************************
 //  GLUT Functions.
 //*************************************************************************
+
+//determinantul este 0
+bool checkIfCollinearPoints(polig polygon) {
+
+	int expression;
+	expression = (polygon.vertex[0].x * polygon.vertex[1].y * polygon.vertex[2].z) + (polygon.vertex[2].x * polygon.vertex[0].y * polygon.vertex[1].z);
+	expression = expression + (polygon.vertex[1].x * polygon.vertex[2].y * polygon.vertex[0].z) - (polygon.vertex[2].x * polygon.vertex[1].y * polygon.vertex[0].z);
+	expression = expression - (polygon.vertex[0].x * polygon.vertex[2].y * polygon.vertex[1].z) - (polygon.vertex[1].x * polygon.vertex[0].y * polygon.vertex[2].z);
+
+	return expression == 0;
+
+}
+
+bool checkIfSameCoordinatesForAllVerteces(polig polygon) {
+	
+	bool x_coord = (polygon.vertex[0].x == polygon.vertex[1].x) && (polygon.vertex[0].x == polygon.vertex[2].x) && (polygon.vertex[1].x == polygon.vertex[2].x);
+	bool y_coord = (polygon.vertex[0].y == polygon.vertex[1].y) && (polygon.vertex[0].y == polygon.vertex[2].y) && (polygon.vertex[1].y == polygon.vertex[2].y);
+	bool z_coord = (polygon.vertex[0].z == polygon.vertex[1].z) && (polygon.vertex[0].z == polygon.vertex[2].z) && (polygon.vertex[1].z == polygon.vertex[2].z);
+
+	return x_coord && y_coord && z_coord;
+
+}
 
 void turnOnTheLight(void){
 
@@ -499,8 +524,19 @@ void glui_callback (int control_id)
 			
 				vertecesIndex++;
 			}
+
+			
 			if(vertecesIndex == 3 ) {
 				vertecesIndex = 0;
+				if(checkIfSameCoordinatesForAllVerteces(polygons[polygonIndex])) {
+					printf("All verteces have the same coordinates");
+					break;
+				}
+				if(checkIfCollinearPoints(polygons[polygonIndex])) {
+					printf("Given verteces are collinear");
+					break;
+				}
+
 				polygonIndex++;
 			
 			} 
@@ -636,7 +672,7 @@ void drawObject ()
 					glBegin(GL_POLYGON);  				
 					for(i = 0; i < verteces; i++){
 					 //glVertex3f(points[k].x, points[k].y, points[k].z);
-						glVertex3f(polygons[j].vertex[k].x, polygons[j].vertex[k].y, polygons[j].vertex[k].z);
+						glVertex3f(polygons[j].vertex[i].x, polygons[j].vertex[i].y, polygons[j].vertex[i].z);
 						k++;
 			}				
 					glEnd();
